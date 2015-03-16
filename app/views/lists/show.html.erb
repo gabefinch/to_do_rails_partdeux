@@ -9,21 +9,22 @@
 
   <ul>
     <% @list.tasks.each do |task| %>
-    <li>
+    <li><p>
+      <% if task.done == true %>
+        &#x2713;
+      <% else %>
+        &nbsp; &nbsp;
+      <% end %>
       <%= task.description %> |
-      Done: <%= task.done %> |
-      <%= link_to "Edit", edit_list_task_path(@list, task) %> |
+      <%= link_to "Edit ", edit_list_task_path(@list, task) %> |
       <%= link_to "Delete", list_task_path(@list, task),
                                             :data => {:confirm => "Are you sure?",
                                             :method => "delete"} %> |
-      <%= link_to "Done", list_task_path(@list, task), :data => {:method => "patch"} %>
       <%= form_for [@list, task] do |f| %>
-        <%= f.hidden_field :done, :value => !task.done %>
-      <p><%= f.submit "Done/Undone" %></p>
+      <%= f.hidden_field :done, :value => !task.done %>
+      <%= f.submit "Completed" %>
       <% end %>
-
-
-    </li>
+    <p></li>
     <% end %>
   </ul>
 <% else %>
