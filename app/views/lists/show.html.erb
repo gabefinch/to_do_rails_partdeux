@@ -2,7 +2,7 @@
 
 <h1><%= @list.name %></h1>
 <h4><%= @list.description %></h4>
-<p><%= link_to "Edit List", edit_list_path(@list) %></p>
+
 
 <% if @list.tasks.any? %>
   <h4>Here are the tasks for this list:</h4>
@@ -23,7 +23,7 @@
 <% end %>
 
 <p><%= link_to "Add a task", new_list_task_path(@list) %></p>
-
+<p><%= link_to "Edit List", edit_list_path(@list) %></p>
 <p><%= link_to "Delete List", list_path(@list),
                         :data => {:confirm => "You totally sure?",
                       :method => "delete"} %></p>
