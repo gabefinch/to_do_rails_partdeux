@@ -38,9 +38,15 @@ class TasksController < ApplicationController
     redirect_to list_path(@list)
   end
 
+  def done
+    @task = Task.find(params[:id])
+    @task.done = !@task.done
+    redirect_to list_path(@task.list)
+  end
+
 private
   def task_params
-    params.require(:task).permit(:description)
+    params.require(:task).permit(:description, :done)
   end
 
 end
